@@ -1,0 +1,15 @@
+Gladys Mobile Alerts integration
+Copyright 2026 William-De71
+
+This product includes software developed for Gladys Assistant.
+
+The measurements come from the Mobile Alerts sensors of the user, through the
+official Mobile Alerts REST API (https://www.data199.com/api/pv1, documented at
+https://mobile-alerts.eu/info/public_server_api_documentation.pdf).
+Data provided by Mobile Alerts.
+
+The measurements of test/helpers/fake-api.js are built after the examples of
+that documentation.
+
+Mobile Alerts is a trademark of its owner. This integration is not affiliated
+with, endorsed by or sponsored by Mobile Alerts, Technoline or La Crosse.

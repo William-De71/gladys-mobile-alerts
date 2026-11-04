@@ -1,0 +1,535 @@
+{
+  "devices": {
+    "sensor": {
+      "external_id": "ext:mobile-alerts:sensor:94286bad7e49",
+      "should_poll": false,
+      "params": [],
+      "features": [
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:temperature",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -50,
+          "max": 110,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:temperature_2",
+          "category": "temperature-sensor",
+          "type": "probe",
+          "unit": "celsius",
+          "min": -50,
+          "max": 110,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:temperature_3",
+          "category": "temperature-sensor",
+          "type": "probe",
+          "unit": "celsius",
+          "min": -50,
+          "max": 110,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:temperature_4",
+          "category": "temperature-sensor",
+          "type": "probe",
+          "unit": "celsius",
+          "min": -50,
+          "max": 110,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:humidity",
+          "category": "humidity-sensor",
+          "type": "decimal",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:humidity_2",
+          "category": "humidity-sensor",
+          "type": "decimal",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:humidity_3",
+          "category": "humidity-sensor",
+          "type": "decimal",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:humidity_4",
+          "category": "humidity-sensor",
+          "type": "decimal",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:co2",
+          "category": "co2-sensor",
+          "type": "integer",
+          "unit": "ppm",
+          "min": 0,
+          "max": 10000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:pressure",
+          "category": "pressure-sensor",
+          "type": "decimal",
+          "unit": "hPa",
+          "min": 300,
+          "max": 1100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:rain_1h",
+          "category": "precipitation-sensor",
+          "type": "decimal",
+          "unit": "millimeter-per-hour",
+          "min": 0,
+          "max": 500,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:rain_24h",
+          "category": "precipitation-sensor",
+          "type": "decimal",
+          "unit": "millimeter-per-day",
+          "min": 0,
+          "max": 2000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:raining",
+          "category": "rain-sensor",
+          "type": "binary",
+          "min": 0,
+          "max": 1,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:wind_speed",
+          "category": "speed-sensor",
+          "type": "decimal",
+          "unit": "meter-per-second",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:wind_gust",
+          "category": "speed-sensor",
+          "type": "decimal",
+          "unit": "meter-per-second",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:wind_direction",
+          "category": "angle-sensor",
+          "type": "decimal",
+          "unit": "degree",
+          "min": 0,
+          "max": 360,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:open",
+          "category": "opening-sensor",
+          "type": "binary",
+          "min": 0,
+          "max": 1,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:smoke",
+          "category": "smoke-sensor",
+          "type": "binary",
+          "min": 0,
+          "max": 1,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:button_1",
+          "category": "button",
+          "type": "click",
+          "min": 0,
+          "max": 6,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:button_2",
+          "category": "button",
+          "type": "click",
+          "min": 0,
+          "max": 6,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:button_3",
+          "category": "button",
+          "type": "click",
+          "min": 0,
+          "max": 6,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:button_4",
+          "category": "button",
+          "type": "click",
+          "min": 0,
+          "max": 6,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:mobile-alerts:sensor:94286bad7e49:battery_low",
+          "category": "battery-low",
+          "type": "binary",
+          "min": 0,
+          "max": 1,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "actions": ["read_now", "diagnostic"],
+    "config_schema": [
+      {
+        "key": "intro",
+        "type": "section"
+      },
+      {
+        "key": "sensors",
+        "type": "string"
+      },
+      {
+        "key": "alerts_section",
+        "type": "section"
+      },
+      {
+        "key": "phone_id",
+        "type": "secret"
+      },
+      {
+        "key": "options",
+        "type": "section"
+      },
+      {
+        "key": "refresh",
+        "type": "select"
+      },
+      {
+        "key": "language",
+        "type": "select"
+      }
+    ],
+    "scene_triggers": [
+      {
+        "key": "button_pressed",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          },
+          {
+            "key": "button",
+            "options": ["1", "2", "3", "4"]
+          },
+          {
+            "key": "press",
+            "options": ["short", "double", "long"]
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "name",
+            "type": "string"
+          },
+          {
+            "key": "button",
+            "type": "string"
+          },
+          {
+            "key": "press",
+            "type": "string"
+          },
+          {
+            "key": "count",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "rain_started",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "name",
+            "type": "string"
+          },
+          {
+            "key": "rain_1h",
+            "type": "number"
+          },
+          {
+            "key": "rain_24h",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "app_alert",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          },
+          {
+            "key": "alert",
+            "options": [
+              "temperature_high",
+              "temperature_low",
+              "humidity_high",
+              "humidity_low",
+              "humidity_average_high",
+              "humidity_average_low",
+              "co2_high",
+              "pressure_high",
+              "pressure_low",
+              "pressure_rising",
+              "pressure_falling",
+              "rain_heavy",
+              "rain_dry",
+              "rain_begin",
+              "wind",
+              "gust",
+              "window_open",
+              "window_closed",
+              "window_open_long",
+              "window_closed_long",
+              "smoke",
+              "power_outage"
+            ]
+          },
+          {
+            "key": "state",
+            "options": ["started", "ended"]
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "name",
+            "type": "string"
+          },
+          {
+            "key": "alert",
+            "type": "string"
+          },
+          {
+            "key": "alert_name",
+            "type": "string"
+          },
+          {
+            "key": "state",
+            "type": "string"
+          },
+          {
+            "key": "probe",
+            "type": "number"
+          },
+          {
+            "key": "value",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "key": "connection_changed",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          },
+          {
+            "key": "state",
+            "options": ["offline", "online"]
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "name",
+            "type": "string"
+          },
+          {
+            "key": "state",
+            "type": "string"
+          },
+          {
+            "key": "last_seen",
+            "type": "string"
+          },
+          {
+            "key": "minutes",
+            "type": "number"
+          }
+        ]
+      }
+    ],
+    "scene_actions": [
+      {
+        "key": "read_sensor",
+        "fields": ["device"],
+        "outputs": [
+          {
+            "key": "name",
+            "type": "string"
+          },
+          {
+            "key": "kind",
+            "type": "string"
+          },
+          {
+            "key": "temperature",
+            "type": "number"
+          },
+          {
+            "key": "humidity",
+            "type": "number"
+          },
+          {
+            "key": "temperature_2",
+            "type": "number"
+          },
+          {
+            "key": "humidity_2",
+            "type": "number"
+          },
+          {
+            "key": "co2",
+            "type": "number"
+          },
+          {
+            "key": "pressure",
+            "type": "number"
+          },
+          {
+            "key": "rain_1h",
+            "type": "number"
+          },
+          {
+            "key": "rain_24h",
+            "type": "number"
+          },
+          {
+            "key": "wind_speed",
+            "type": "number"
+          },
+          {
+            "key": "wind_gust",
+            "type": "number"
+          },
+          {
+            "key": "wind_direction",
+            "type": "number"
+          },
+          {
+            "key": "wind_direction_name",
+            "type": "string"
+          },
+          {
+            "key": "window",
+            "type": "string"
+          },
+          {
+            "key": "battery_low",
+            "type": "boolean"
+          },
+          {
+            "key": "measured_at",
+            "type": "string"
+          },
+          {
+            "key": "connection",
+            "type": "string"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "widgets": [
+      {
+        "key": "sensors",
+        "settings": [],
+        "options": {}
+      },
+      {
+        "key": "weather",
+        "settings": ["rain_device", "wind_device"],
+        "options": {}
+      }
+    ]
+  }
+}

@@ -1,0 +1,1323 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Mobile Alerts",
+  "description": {
+    "en": "Mobile Alerts sensors: temperature, humidity, rain, wind, window contacts and buttons.",
+    "fr": "Capteurs Mobile Alerts : température, humidité, pluie, vent, contacts de fenêtre, boutons.",
+    "de": "Mobile-Alerts-Sensoren: Temperatur, Feuchte, Regen, Wind, Fensterkontakte und Tasten.",
+    "es": "Sensores Mobile Alerts: temperatura, humedad, lluvia, viento, contactos de ventana, botones."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-mobile-alerts:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "categories": ["environment", "climate"],
+  "keywords": [
+    "Technoline",
+    "La Crosse",
+    "weather station",
+    "station météo",
+    "Wetterstation",
+    "rain gauge",
+    "pluviomètre",
+    "anemometer",
+    "thermo-hygrometer",
+    "ELV"
+  ],
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-mobile-alerts/main/cover.jpg",
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Mobile Alerts sensors",
+        "fr": "Capteurs Mobile Alerts",
+        "de": "Mobile-Alerts-Sensoren",
+        "es": "Sensores Mobile Alerts"
+      },
+      "description": {
+        "en": "Your sensors send their measurements through the Mobile Alerts gateway to the Mobile Alerts server; the integration reads them there with the official REST API, without any account. Give the id of each sensor: 12 characters, printed on the sticker of the sensor and shown in the Mobile Alerts app (Sensors, then the sensor). Up to 50, separated by commas or new lines.",
+        "fr": "Vos capteurs envoient leurs mesures par la passerelle Mobile Alerts au serveur Mobile Alerts ; l’intégration les y lit avec l’API REST officielle, sans aucun compte. Donnez l’identifiant de chaque capteur : 12 caractères, imprimés sur l’étiquette du capteur et affichés dans l’appli Mobile Alerts (Capteurs, puis le capteur). Jusqu’à 50, séparés par des virgules ou des retours à la ligne.",
+        "de": "Deine Sensoren senden ihre Messwerte über das Mobile-Alerts-Gateway an den Mobile-Alerts-Server; die Integration liest sie dort über die offizielle REST-API, ganz ohne Konto. Gib die ID jedes Sensors an: 12 Zeichen, auf dem Aufkleber des Sensors gedruckt und in der Mobile-Alerts-App angezeigt (Sensoren, dann der Sensor). Bis zu 50, getrennt durch Kommas oder Zeilenumbrüche.",
+        "es": "Sus sensores envían sus mediciones a través de la pasarela Mobile Alerts al servidor Mobile Alerts; la integración las lee allí con la API REST oficial, sin ninguna cuenta. Indique el identificador de cada sensor: 12 caracteres, impresos en la etiqueta del sensor y mostrados en la app Mobile Alerts (Sensores y luego el sensor). Hasta 50, separados por comas o saltos de línea."
+      },
+      "links": [
+        {
+          "url": "https://mobile-alerts.eu",
+          "label": {
+            "en": "Mobile Alerts website",
+            "fr": "Site de Mobile Alerts",
+            "de": "Website von Mobile Alerts",
+            "es": "Sitio de Mobile Alerts"
+          }
+        },
+        {
+          "url": "https://mobile-alerts.eu/info/public_server_api_documentation.pdf",
+          "label": {
+            "en": "REST API documentation",
+            "fr": "Documentation de l’API REST",
+            "de": "Dokumentation der REST-API",
+            "es": "Documentación de la API REST"
+          }
+        }
+      ]
+    },
+    {
+      "key": "sensors",
+      "type": "string",
+      "required": true,
+      "label": {
+        "en": "Sensor ids",
+        "fr": "Identifiants des capteurs",
+        "de": "Sensor-IDs",
+        "es": "Identificadores de los sensores"
+      },
+      "placeholder": {
+        "en": "0E7EA4A71203, 09265A8A3503",
+        "fr": "0E7EA4A71203, 09265A8A3503",
+        "de": "0E7EA4A71203, 09265A8A3503",
+        "es": "0E7EA4A71203, 09265A8A3503"
+      }
+    },
+    {
+      "key": "alerts_section",
+      "type": "section",
+      "label": {
+        "en": "Alerts of the app (optional)",
+        "fr": "Alertes de l’appli (facultatif)",
+        "de": "Alarme der App (optional)",
+        "es": "Alertas de la app (opcional)"
+      },
+      "description": {
+        "en": "With the phone id of the Mobile Alerts app, the server adds the alerts you set in the app (temperature, humidity, rain, wind, window, smoke…) to the measurements: they become scene triggers, and the smoke alarms of an alarm detector a feature. The app shows the phone id in its Settings. Leave empty otherwise.",
+        "fr": "Avec le Phone ID de l’appli Mobile Alerts, le serveur ajoute aux mesures les alertes réglées dans l’appli (température, humidité, pluie, vent, fenêtre, fumée…) : elles deviennent des déclencheurs de scène, et les alarmes fumée d’un détecteur d’alarme une fonctionnalité. L’appli affiche le Phone ID dans ses Réglages. Sinon, laissez vide.",
+        "de": "Mit der Phone-ID der Mobile-Alerts-App fügt der Server den Messwerten die in der App eingestellten Alarme hinzu (Temperatur, Feuchte, Regen, Wind, Fenster, Rauch…): Sie werden zu Szenenauslösern, und die Rauchalarme eines Alarmmelders zu einer Funktion. Die App zeigt die Phone-ID in ihren Einstellungen. Sonst leer lassen.",
+        "es": "Con el Phone ID de la app Mobile Alerts, el servidor añade a las mediciones las alertas configuradas en la app (temperatura, humedad, lluvia, viento, ventana, humo…): se convierten en desencadenantes de escena, y las alarmas de humo de un detector de alarma en una función. La app muestra el Phone ID en sus Ajustes. Si no, déjelo vacío."
+      }
+    },
+    {
+      "key": "phone_id",
+      "type": "secret",
+      "required": false,
+      "label": {
+        "en": "Phone id of the app",
+        "fr": "Phone ID de l’appli",
+        "de": "Phone-ID der App",
+        "es": "Phone ID de la app"
+      }
+    },
+    {
+      "key": "options",
+      "type": "section",
+      "label": {
+        "en": "Options",
+        "fr": "Options",
+        "de": "Optionen",
+        "es": "Opciones"
+      },
+      "description": {
+        "en": "A sensor sends a measurement about every 7 minutes, a window contact or a switch at once. The server allows 3 requests a minute for a sensor: every minute stays within it.",
+        "fr": "Un capteur envoie une mesure environ toutes les 7 minutes, un contact de fenêtre ou un interrupteur tout de suite. Le serveur autorise 3 requêtes par minute et par capteur : chaque minute reste dans la limite.",
+        "de": "Ein Sensor sendet etwa alle 7 Minuten einen Messwert, ein Fensterkontakt oder ein Schalter sofort. Der Server erlaubt 3 Anfragen pro Minute und Sensor: jede Minute bleibt darunter.",
+        "es": "Un sensor envía una medición cada 7 minutos aproximadamente, un contacto de ventana o un interruptor al instante. El servidor permite 3 peticiones por minuto y sensor: cada minuto queda dentro del límite."
+      }
+    },
+    {
+      "key": "refresh",
+      "type": "select",
+      "default": "2",
+      "label": {
+        "en": "Read every",
+        "fr": "Lire toutes les",
+        "de": "Lesen alle",
+        "es": "Leer cada"
+      },
+      "options": [
+        {
+          "value": "1",
+          "label": {
+            "en": "1 minute",
+            "fr": "1 minute",
+            "de": "1 Minute",
+            "es": "1 minuto"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "en": "2 minutes",
+            "fr": "2 minutes",
+            "de": "2 Minuten",
+            "es": "2 minutos"
+          }
+        },
+        {
+          "value": "5",
+          "label": {
+            "en": "5 minutes",
+            "fr": "5 minutes",
+            "de": "5 Minuten",
+            "es": "5 minutos"
+          }
+        },
+        {
+          "value": "10",
+          "label": {
+            "en": "10 minutes",
+            "fr": "10 minutes",
+            "de": "10 Minuten",
+            "es": "10 minutos"
+          }
+        }
+      ]
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "default": "auto",
+      "label": {
+        "en": "Language of the texts",
+        "fr": "Langue des textes",
+        "de": "Sprache der Texte",
+        "es": "Idioma de los textos"
+      },
+      "description": {
+        "en": "Names of the devices and texts of the scenes. Automatic: the language of the dashboard.",
+        "fr": "Noms des appareils et textes des scènes. Automatique : la langue du tableau de bord.",
+        "de": "Namen der Geräte und Texte der Szenen. Automatisch: die Sprache des Dashboards.",
+        "es": "Nombres de los dispositivos y textos de las escenas. Automático: el idioma del panel."
+      },
+      "options": [
+        {
+          "value": "auto",
+          "label": {
+            "en": "Automatic",
+            "fr": "Automatique",
+            "de": "Automatisch",
+            "es": "Automático"
+          }
+        },
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "English",
+            "de": "English",
+            "es": "English"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "Français",
+            "fr": "Français",
+            "de": "Français",
+            "es": "Français"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "Deutsch",
+            "fr": "Deutsch",
+            "de": "Deutsch",
+            "es": "Deutsch"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Español",
+            "fr": "Español",
+            "de": "Español",
+            "es": "Español"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "key": "read_now",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Read now",
+        "fr": "Lire maintenant",
+        "de": "Jetzt lesen",
+        "es": "Leer ahora"
+      },
+      "description": {
+        "en": "Reads every sensor now, and checks again the ids the server did not know.",
+        "fr": "Lit tout de suite chaque capteur, et revérifie les identifiants inconnus du serveur.",
+        "de": "Liest sofort jeden Sensor und prüft die dem Server unbekannten IDs erneut.",
+        "es": "Lee ahora cada sensor y vuelve a comprobar los identificadores que el servidor no conocía."
+      }
+    },
+    {
+      "key": "diagnostic",
+      "label": {
+        "en": "Diagnostic",
+        "fr": "Diagnostic",
+        "de": "Diagnose",
+        "es": "Diagnóstico"
+      },
+      "description": {
+        "en": "Writes the state of the integration to its logs, without the ids nor the phone id.",
+        "fr": "Écrit l’état de l’intégration dans ses journaux, sans les identifiants ni le Phone ID.",
+        "de": "Schreibt den Zustand der Integration in ihre Logs, ohne die IDs und die Phone-ID.",
+        "es": "Escribe el estado de la integración en sus registros, sin los identificadores ni el Phone ID."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "sensors",
+      "icon": "thermometer",
+      "action_timeout_seconds": 60,
+      "label": {
+        "en": "Mobile Alerts sensors",
+        "fr": "Capteurs Mobile Alerts",
+        "de": "Mobile-Alerts-Sensoren",
+        "es": "Sensores Mobile Alerts"
+      },
+      "description": {
+        "en": "Every sensor at a glance: values, battery, offline sensors and alerts.",
+        "fr": "Tous les capteurs d’un coup d’œil : valeurs, piles, capteurs hors ligne et alertes.",
+        "de": "Alle Sensoren auf einen Blick: Werte, Batterien, Offline-Sensoren und Alarme.",
+        "es": "Todos los sensores de un vistazo: valores, pilas, sensores sin señal y alertas."
+      }
+    },
+    {
+      "key": "weather",
+      "icon": "cloud-rain",
+      "label": {
+        "en": "Mobile Alerts rain & wind",
+        "fr": "Pluie et vent Mobile Alerts",
+        "de": "Mobile Alerts Regen & Wind",
+        "es": "Lluvia y viento Mobile Alerts"
+      },
+      "description": {
+        "en": "Rain of the last hour and 24 hours, wind, gusts and direction, rain per hour.",
+        "fr": "Pluie de la dernière heure et des 24 heures, vent, rafales et direction, pluie par heure.",
+        "de": "Regen der letzten Stunde und 24 Stunden, Wind, Böen und Richtung, Regen pro Stunde.",
+        "es": "Lluvia de la última hora y de 24 horas, viento, ráfagas y dirección, lluvia por hora."
+      },
+      "settings": [
+        {
+          "key": "rain_device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Rain gauge",
+            "fr": "Pluviomètre",
+            "de": "Regenmesser",
+            "es": "Pluviómetro"
+          },
+          "description": {
+            "en": "A rain gauge. Leave empty for the first one.",
+            "fr": "Un pluviomètre. Laissez vide pour le premier.",
+            "de": "Ein Regenmesser. Leer lassen für den ersten.",
+            "es": "Un pluviómetro. Déjelo vacío para el primero."
+          },
+          "required": false
+        },
+        {
+          "key": "wind_device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Anemometer",
+            "fr": "Anémomètre",
+            "de": "Windmesser",
+            "es": "Anemómetro"
+          },
+          "description": {
+            "en": "An anemometer. Leave empty for the first one.",
+            "fr": "Un anémomètre. Laissez vide pour le premier.",
+            "de": "Ein Windmesser. Leer lassen für den ersten.",
+            "es": "Un anemómetro. Déjelo vacío para el primero."
+          },
+          "required": false
+        }
+      ]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "button_pressed",
+      "label": {
+        "en": "Mobile Alerts: button pressed",
+        "fr": "Mobile Alerts : bouton appuyé",
+        "de": "Mobile Alerts: Taste gedrückt",
+        "es": "Mobile Alerts: botón pulsado"
+      },
+      "description": {
+        "en": "A key of a Mobile Alerts wireless switch is pressed (seen at the next reading).",
+        "fr": "Une touche d’un interrupteur sans fil Mobile Alerts est appuyée (vue à la lecture suivante).",
+        "de": "Eine Taste eines Mobile-Alerts-Funkschalters wird gedrückt (bei der nächsten Abfrage erkannt).",
+        "es": "Se pulsa una tecla de un interruptor inalámbrico Mobile Alerts (visto en la siguiente lectura)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Sensor",
+            "fr": "Capteur",
+            "de": "Sensor",
+            "es": "Sensor"
+          },
+          "description": {
+            "en": "A Mobile Alerts sensor. Leave empty for any sensor.",
+            "fr": "Un capteur Mobile Alerts. Laissez vide pour tous les capteurs.",
+            "de": "Ein Mobile-Alerts-Sensor. Leer lassen für alle Sensoren.",
+            "es": "Un sensor Mobile Alerts. Déjelo vacío para cualquier sensor."
+          },
+          "required": false
+        },
+        {
+          "key": "button",
+          "type": "select",
+          "label": {
+            "en": "Button",
+            "fr": "Bouton",
+            "de": "Taste",
+            "es": "Botón"
+          },
+          "description": {
+            "en": "Leave empty for any.",
+            "fr": "Laissez vide pour tous.",
+            "de": "Leer lassen für jede.",
+            "es": "Déjelo vacío para cualquiera."
+          },
+          "options": [
+            {
+              "value": "1",
+              "label": {
+                "en": "Button 1",
+                "fr": "Bouton 1",
+                "de": "Taste 1",
+                "es": "Botón 1"
+              }
+            },
+            {
+              "value": "2",
+              "label": {
+                "en": "Button 2",
+                "fr": "Bouton 2",
+                "de": "Taste 2",
+                "es": "Botón 2"
+              }
+            },
+            {
+              "value": "3",
+              "label": {
+                "en": "Button 3",
+                "fr": "Bouton 3",
+                "de": "Taste 3",
+                "es": "Botón 3"
+              }
+            },
+            {
+              "value": "4",
+              "label": {
+                "en": "Button 4",
+                "fr": "Bouton 4",
+                "de": "Taste 4",
+                "es": "Botón 4"
+              }
+            }
+          ]
+        },
+        {
+          "key": "press",
+          "type": "multi_select",
+          "label": {
+            "en": "Press",
+            "fr": "Appui",
+            "de": "Druck",
+            "es": "Pulsación"
+          },
+          "description": {
+            "en": "Leave empty for any.",
+            "fr": "Laissez vide pour tous.",
+            "de": "Leer lassen für jeden.",
+            "es": "Déjelo vacío para cualquiera."
+          },
+          "options": [
+            {
+              "value": "short",
+              "label": {
+                "en": "Short press",
+                "fr": "Appui court",
+                "de": "Kurz gedrückt",
+                "es": "Pulsación corta"
+              }
+            },
+            {
+              "value": "double",
+              "label": {
+                "en": "Double press",
+                "fr": "Double appui",
+                "de": "Doppelt gedrückt",
+                "es": "Doble pulsación"
+              }
+            },
+            {
+              "value": "long",
+              "label": {
+                "en": "Long press",
+                "fr": "Appui long",
+                "de": "Lang gedrückt",
+                "es": "Pulsación larga"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Sensor (id in Gladys)",
+            "fr": "Capteur (id dans Gladys)",
+            "de": "Sensor (ID in Gladys)",
+            "es": "Sensor (id en Gladys)"
+          }
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Sensor name",
+            "fr": "Nom du capteur",
+            "de": "Name des Sensors",
+            "es": "Nombre del sensor"
+          }
+        },
+        {
+          "key": "button",
+          "type": "string",
+          "label": {
+            "en": "Button (1-4)",
+            "fr": "Bouton (1-4)",
+            "de": "Taste (1-4)",
+            "es": "Botón (1-4)"
+          }
+        },
+        {
+          "key": "press",
+          "type": "string",
+          "label": {
+            "en": "Press (short, double, long)",
+            "fr": "Appui (short, double, long)",
+            "de": "Druck (short, double, long)",
+            "es": "Pulsación (short, double, long)"
+          }
+        },
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Presses since the last reading",
+            "fr": "Appuis depuis la lecture précédente",
+            "de": "Drücke seit der letzten Abfrage",
+            "es": "Pulsaciones desde la lectura anterior"
+          }
+        }
+      ]
+    },
+    {
+      "key": "rain_started",
+      "label": {
+        "en": "Mobile Alerts: rain started",
+        "fr": "Mobile Alerts : il commence à pleuvoir",
+        "de": "Mobile Alerts: Regen beginnt",
+        "es": "Mobile Alerts: empieza a llover"
+      },
+      "description": {
+        "en": "A rain gauge counts rain after at least an hour without any.",
+        "fr": "Un pluviomètre compte de la pluie après au moins une heure sans.",
+        "de": "Ein Regenmesser zählt Regen nach mindestens einer Stunde ohne.",
+        "es": "Un pluviómetro cuenta lluvia tras al menos una hora sin ella."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Sensor",
+            "fr": "Capteur",
+            "de": "Sensor",
+            "es": "Sensor"
+          },
+          "description": {
+            "en": "A Mobile Alerts sensor. Leave empty for any sensor.",
+            "fr": "Un capteur Mobile Alerts. Laissez vide pour tous les capteurs.",
+            "de": "Ein Mobile-Alerts-Sensor. Leer lassen für alle Sensoren.",
+            "es": "Un sensor Mobile Alerts. Déjelo vacío para cualquier sensor."
+          },
+          "required": false
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Sensor (id in Gladys)",
+            "fr": "Capteur (id dans Gladys)",
+            "de": "Sensor (ID in Gladys)",
+            "es": "Sensor (id en Gladys)"
+          }
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Sensor name",
+            "fr": "Nom du capteur",
+            "de": "Name des Sensors",
+            "es": "Nombre del sensor"
+          }
+        },
+        {
+          "key": "rain_1h",
+          "type": "number",
+          "label": {
+            "en": "Rain of the last hour (mm)",
+            "fr": "Pluie de la dernière heure (mm)",
+            "de": "Regen der letzten Stunde (mm)",
+            "es": "Lluvia de la última hora (mm)"
+          }
+        },
+        {
+          "key": "rain_24h",
+          "type": "number",
+          "label": {
+            "en": "Rain of the last 24 hours (mm)",
+            "fr": "Pluie des dernières 24 heures (mm)",
+            "de": "Regen der letzten 24 Stunden (mm)",
+            "es": "Lluvia de las últimas 24 horas (mm)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "app_alert",
+      "label": {
+        "en": "Mobile Alerts: alert of the app",
+        "fr": "Mobile Alerts : alerte de l’appli",
+        "de": "Mobile Alerts: Alarm der App",
+        "es": "Mobile Alerts: alerta de la app"
+      },
+      "description": {
+        "en": "An alert set in the Mobile Alerts app starts or ends (needs the phone id).",
+        "fr": "Une alerte réglée dans l’appli Mobile Alerts commence ou se termine (Phone ID requis).",
+        "de": "Ein in der Mobile-Alerts-App eingestellter Alarm beginnt oder endet (Phone-ID nötig).",
+        "es": "Una alerta configurada en la app Mobile Alerts empieza o termina (requiere el Phone ID)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Sensor",
+            "fr": "Capteur",
+            "de": "Sensor",
+            "es": "Sensor"
+          },
+          "description": {
+            "en": "A Mobile Alerts sensor. Leave empty for any sensor.",
+            "fr": "Un capteur Mobile Alerts. Laissez vide pour tous les capteurs.",
+            "de": "Ein Mobile-Alerts-Sensor. Leer lassen für alle Sensoren.",
+            "es": "Un sensor Mobile Alerts. Déjelo vacío para cualquier sensor."
+          },
+          "required": false
+        },
+        {
+          "key": "alert",
+          "type": "multi_select",
+          "label": {
+            "en": "Alert",
+            "fr": "Alerte",
+            "de": "Alarm",
+            "es": "Alerta"
+          },
+          "description": {
+            "en": "Leave empty for any.",
+            "fr": "Laissez vide pour toutes.",
+            "de": "Leer lassen für jeden.",
+            "es": "Déjelo vacío para cualquiera."
+          },
+          "options": [
+            {
+              "value": "temperature_high",
+              "label": {
+                "en": "Temperature too high",
+                "fr": "Température trop haute",
+                "de": "Temperatur zu hoch",
+                "es": "Temperatura demasiado alta"
+              }
+            },
+            {
+              "value": "temperature_low",
+              "label": {
+                "en": "Temperature too low",
+                "fr": "Température trop basse",
+                "de": "Temperatur zu niedrig",
+                "es": "Temperatura demasiado baja"
+              }
+            },
+            {
+              "value": "humidity_high",
+              "label": {
+                "en": "Humidity too high",
+                "fr": "Humidité trop haute",
+                "de": "Luftfeuchtigkeit zu hoch",
+                "es": "Humedad demasiado alta"
+              }
+            },
+            {
+              "value": "humidity_low",
+              "label": {
+                "en": "Humidity too low",
+                "fr": "Humidité trop basse",
+                "de": "Luftfeuchtigkeit zu niedrig",
+                "es": "Humedad demasiado baja"
+              }
+            },
+            {
+              "value": "humidity_average_high",
+              "label": {
+                "en": "Average humidity too high",
+                "fr": "Humidité moyenne trop haute",
+                "de": "Mittlere Luftfeuchtigkeit zu hoch",
+                "es": "Humedad media demasiado alta"
+              }
+            },
+            {
+              "value": "humidity_average_low",
+              "label": {
+                "en": "Average humidity too low",
+                "fr": "Humidité moyenne trop basse",
+                "de": "Mittlere Luftfeuchtigkeit zu niedrig",
+                "es": "Humedad media demasiado baja"
+              }
+            },
+            {
+              "value": "co2_high",
+              "label": {
+                "en": "Poor air quality",
+                "fr": "Mauvaise qualité de l’air",
+                "de": "Schlechte Luftqualität",
+                "es": "Mala calidad del aire"
+              }
+            },
+            {
+              "value": "pressure_high",
+              "label": {
+                "en": "Pressure too high",
+                "fr": "Pression trop haute",
+                "de": "Luftdruck zu hoch",
+                "es": "Presión demasiado alta"
+              }
+            },
+            {
+              "value": "pressure_low",
+              "label": {
+                "en": "Pressure too low",
+                "fr": "Pression trop basse",
+                "de": "Luftdruck zu niedrig",
+                "es": "Presión demasiado baja"
+              }
+            },
+            {
+              "value": "pressure_rising",
+              "label": {
+                "en": "Pressure rising fast",
+                "fr": "Pression en forte hausse",
+                "de": "Luftdruck steigt stark",
+                "es": "Presión en fuerte subida"
+              }
+            },
+            {
+              "value": "pressure_falling",
+              "label": {
+                "en": "Pressure falling fast",
+                "fr": "Pression en forte baisse",
+                "de": "Luftdruck fällt stark",
+                "es": "Presión en fuerte bajada"
+              }
+            },
+            {
+              "value": "rain_heavy",
+              "label": {
+                "en": "Heavy rain",
+                "fr": "Forte pluie",
+                "de": "Starkregen",
+                "es": "Lluvia intensa"
+              }
+            },
+            {
+              "value": "rain_dry",
+              "label": {
+                "en": "Long dry spell",
+                "fr": "Longue période sèche",
+                "de": "Lange Trockenheit",
+                "es": "Largo periodo seco"
+              }
+            },
+            {
+              "value": "rain_begin",
+              "label": {
+                "en": "Rain begins",
+                "fr": "Début de pluie",
+                "de": "Regenbeginn",
+                "es": "Empieza a llover"
+              }
+            },
+            {
+              "value": "wind",
+              "label": {
+                "en": "Strong wind",
+                "fr": "Vent fort",
+                "de": "Starker Wind",
+                "es": "Viento fuerte"
+              }
+            },
+            {
+              "value": "gust",
+              "label": {
+                "en": "Strong gusts",
+                "fr": "Fortes rafales",
+                "de": "Starke Böen",
+                "es": "Ráfagas fuertes"
+              }
+            },
+            {
+              "value": "window_open",
+              "label": {
+                "en": "Window opened",
+                "fr": "Fenêtre ouverte",
+                "de": "Fenster geöffnet",
+                "es": "Ventana abierta"
+              }
+            },
+            {
+              "value": "window_closed",
+              "label": {
+                "en": "Window closed",
+                "fr": "Fenêtre fermée",
+                "de": "Fenster geschlossen",
+                "es": "Ventana cerrada"
+              }
+            },
+            {
+              "value": "window_open_long",
+              "label": {
+                "en": "Window open too long",
+                "fr": "Fenêtre ouverte trop longtemps",
+                "de": "Fenster zu lange offen",
+                "es": "Ventana abierta demasiado tiempo"
+              }
+            },
+            {
+              "value": "window_closed_long",
+              "label": {
+                "en": "Window closed too long",
+                "fr": "Fenêtre fermée trop longtemps",
+                "de": "Fenster zu lange geschlossen",
+                "es": "Ventana cerrada demasiado tiempo"
+              }
+            },
+            {
+              "value": "smoke",
+              "label": {
+                "en": "Smoke alarm",
+                "fr": "Alarme fumée",
+                "de": "Rauchalarm",
+                "es": "Alarma de humo"
+              }
+            },
+            {
+              "value": "power_outage",
+              "label": {
+                "en": "Power outage",
+                "fr": "Coupure de courant",
+                "de": "Stromausfall",
+                "es": "Corte de corriente"
+              }
+            }
+          ]
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "description": {
+            "en": "Leave empty for both.",
+            "fr": "Laissez vide pour les deux.",
+            "de": "Leer lassen für beide.",
+            "es": "Déjelo vacío para ambos."
+          },
+          "options": [
+            {
+              "value": "started",
+              "label": {
+                "en": "Started",
+                "fr": "Commence",
+                "de": "Beginnt",
+                "es": "Empieza"
+              }
+            },
+            {
+              "value": "ended",
+              "label": {
+                "en": "Ended",
+                "fr": "Se termine",
+                "de": "Endet",
+                "es": "Termina"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Sensor (id in Gladys)",
+            "fr": "Capteur (id dans Gladys)",
+            "de": "Sensor (ID in Gladys)",
+            "es": "Sensor (id en Gladys)"
+          }
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Sensor name",
+            "fr": "Nom du capteur",
+            "de": "Name des Sensors",
+            "es": "Nombre del sensor"
+          }
+        },
+        {
+          "key": "alert",
+          "type": "string",
+          "label": {
+            "en": "Alert (key)",
+            "fr": "Alerte (clé)",
+            "de": "Alarm (Schlüssel)",
+            "es": "Alerta (clave)"
+          }
+        },
+        {
+          "key": "alert_name",
+          "type": "string",
+          "label": {
+            "en": "Alert",
+            "fr": "Alerte",
+            "de": "Alarm",
+            "es": "Alerta"
+          }
+        },
+        {
+          "key": "state",
+          "type": "string",
+          "label": {
+            "en": "State (started, ended)",
+            "fr": "État (started, ended)",
+            "de": "Zustand (started, ended)",
+            "es": "Estado (started, ended)"
+          }
+        },
+        {
+          "key": "probe",
+          "type": "number",
+          "label": {
+            "en": "Probe or detector (1-4)",
+            "fr": "Sonde ou détecteur (1-4)",
+            "de": "Fühler oder Melder (1-4)",
+            "es": "Sonda o detector (1-4)"
+          }
+        },
+        {
+          "key": "value",
+          "type": "number",
+          "label": {
+            "en": "Measured value",
+            "fr": "Valeur mesurée",
+            "de": "Messwert",
+            "es": "Valor medido"
+          }
+        }
+      ]
+    },
+    {
+      "key": "connection_changed",
+      "label": {
+        "en": "Mobile Alerts: sensor offline or back",
+        "fr": "Mobile Alerts : capteur hors ligne ou de retour",
+        "de": "Mobile Alerts: Sensor offline oder zurück",
+        "es": "Mobile Alerts: sensor sin señal o de vuelta"
+      },
+      "description": {
+        "en": "The server has not received anything from a sensor for 3 hours, or receives again.",
+        "fr": "Le serveur n’a rien reçu d’un capteur depuis 3 heures, ou reçoit de nouveau.",
+        "de": "Der Server hat seit 3 Stunden nichts von einem Sensor empfangen, oder wieder.",
+        "es": "El servidor no recibe nada de un sensor desde hace 3 horas, o vuelve a recibir."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Sensor",
+            "fr": "Capteur",
+            "de": "Sensor",
+            "es": "Sensor"
+          },
+          "description": {
+            "en": "A Mobile Alerts sensor. Leave empty for any sensor.",
+            "fr": "Un capteur Mobile Alerts. Laissez vide pour tous les capteurs.",
+            "de": "Ein Mobile-Alerts-Sensor. Leer lassen für alle Sensoren.",
+            "es": "Un sensor Mobile Alerts. Déjelo vacío para cualquier sensor."
+          },
+          "required": false
+        },
+        {
+          "key": "state",
+          "type": "select",
+          "label": {
+            "en": "State",
+            "fr": "État",
+            "de": "Zustand",
+            "es": "Estado"
+          },
+          "description": {
+            "en": "Leave empty for both.",
+            "fr": "Laissez vide pour les deux.",
+            "de": "Leer lassen für beide.",
+            "es": "Déjelo vacío para ambos."
+          },
+          "options": [
+            {
+              "value": "offline",
+              "label": {
+                "en": "Offline",
+                "fr": "Hors ligne",
+                "de": "Offline",
+                "es": "Sin señal"
+              }
+            },
+            {
+              "value": "online",
+              "label": {
+                "en": "Back online",
+                "fr": "De retour",
+                "de": "Wieder online",
+                "es": "De nuevo con señal"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Sensor (id in Gladys)",
+            "fr": "Capteur (id dans Gladys)",
+            "de": "Sensor (ID in Gladys)",
+            "es": "Sensor (id en Gladys)"
+          }
+        },
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Sensor name",
+            "fr": "Nom du capteur",
+            "de": "Name des Sensors",
+            "es": "Nombre del sensor"
+          }
+        },
+        {
+          "key": "state",
+          "type": "string",
+          "label": {
+            "en": "State (offline, online)",
+            "fr": "État (offline, online)",
+            "de": "Zustand (offline, online)",
+            "es": "Estado (offline, online)"
+          }
+        },
+        {
+          "key": "last_seen",
+          "type": "string",
+          "label": {
+            "en": "Time last seen",
+            "fr": "Heure de dernière réception",
+            "de": "Zuletzt empfangen um",
+            "es": "Hora de la última recepción"
+          }
+        },
+        {
+          "key": "minutes",
+          "type": "number",
+          "label": {
+            "en": "Minutes since then",
+            "fr": "Minutes depuis",
+            "de": "Minuten seitdem",
+            "es": "Minutos desde entonces"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "read_sensor",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Mobile Alerts: read a sensor",
+        "fr": "Mobile Alerts : lire un capteur",
+        "de": "Mobile Alerts: Sensor lesen",
+        "es": "Mobile Alerts: leer un sensor"
+      },
+      "description": {
+        "en": "The last measurement of a sensor and a sentence for a message.",
+        "fr": "La dernière mesure d’un capteur et une phrase pour un message.",
+        "de": "Der letzte Messwert eines Sensors und ein Satz für eine Nachricht.",
+        "es": "La última medición de un sensor y una frase para un mensaje."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "label": {
+            "en": "Sensor",
+            "fr": "Capteur",
+            "de": "Sensor",
+            "es": "Sensor"
+          },
+          "description": {
+            "en": "A Mobile Alerts sensor. Leave empty for the first one.",
+            "fr": "Un capteur Mobile Alerts. Laissez vide pour le premier.",
+            "de": "Ein Mobile-Alerts-Sensor. Leer lassen für den ersten.",
+            "es": "Un sensor Mobile Alerts. Déjelo vacío para el primero."
+          },
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "key": "name",
+          "type": "string",
+          "label": {
+            "en": "Sensor name",
+            "fr": "Nom du capteur",
+            "de": "Name des Sensors",
+            "es": "Nombre del sensor"
+          }
+        },
+        {
+          "key": "kind",
+          "type": "string",
+          "label": {
+            "en": "Kind of sensor (key)",
+            "fr": "Type de capteur (clé)",
+            "de": "Sensorart (Schlüssel)",
+            "es": "Tipo de sensor (clave)"
+          }
+        },
+        {
+          "key": "temperature",
+          "type": "number",
+          "label": {
+            "en": "Temperature (°C)",
+            "fr": "Température (°C)",
+            "de": "Temperatur (°C)",
+            "es": "Temperatura (°C)"
+          }
+        },
+        {
+          "key": "humidity",
+          "type": "number",
+          "label": {
+            "en": "Humidity (%)",
+            "fr": "Humidité (%)",
+            "de": "Luftfeuchtigkeit (%)",
+            "es": "Humedad (%)"
+          }
+        },
+        {
+          "key": "temperature_2",
+          "type": "number",
+          "label": {
+            "en": "Temperature, probe 2 (°C)",
+            "fr": "Température, sonde 2 (°C)",
+            "de": "Temperatur, Fühler 2 (°C)",
+            "es": "Temperatura, sonda 2 (°C)"
+          }
+        },
+        {
+          "key": "humidity_2",
+          "type": "number",
+          "label": {
+            "en": "Humidity, probe 2 (%)",
+            "fr": "Humidité, sonde 2 (%)",
+            "de": "Luftfeuchtigkeit, Fühler 2 (%)",
+            "es": "Humedad, sonda 2 (%)"
+          }
+        },
+        {
+          "key": "co2",
+          "type": "number",
+          "label": {
+            "en": "Air quality (ppm)",
+            "fr": "Qualité de l’air (ppm)",
+            "de": "Luftqualität (ppm)",
+            "es": "Calidad del aire (ppm)"
+          }
+        },
+        {
+          "key": "pressure",
+          "type": "number",
+          "label": {
+            "en": "Pressure (hPa)",
+            "fr": "Pression (hPa)",
+            "de": "Luftdruck (hPa)",
+            "es": "Presión (hPa)"
+          }
+        },
+        {
+          "key": "rain_1h",
+          "type": "number",
+          "label": {
+            "en": "Rain of the last hour (mm)",
+            "fr": "Pluie de la dernière heure (mm)",
+            "de": "Regen der letzten Stunde (mm)",
+            "es": "Lluvia de la última hora (mm)"
+          }
+        },
+        {
+          "key": "rain_24h",
+          "type": "number",
+          "label": {
+            "en": "Rain of the last 24 hours (mm)",
+            "fr": "Pluie des dernières 24 heures (mm)",
+            "de": "Regen der letzten 24 Stunden (mm)",
+            "es": "Lluvia de las últimas 24 horas (mm)"
+          }
+        },
+        {
+          "key": "wind_speed",
+          "type": "number",
+          "label": {
+            "en": "Wind speed (m/s)",
+            "fr": "Vitesse du vent (m/s)",
+            "de": "Windgeschwindigkeit (m/s)",
+            "es": "Velocidad del viento (m/s)"
+          }
+        },
+        {
+          "key": "wind_gust",
+          "type": "number",
+          "label": {
+            "en": "Gusts (m/s)",
+            "fr": "Rafales (m/s)",
+            "de": "Böen (m/s)",
+            "es": "Ráfagas (m/s)"
+          }
+        },
+        {
+          "key": "wind_direction",
+          "type": "number",
+          "label": {
+            "en": "Wind direction (degrees)",
+            "fr": "Direction du vent (degrés)",
+            "de": "Windrichtung (Grad)",
+            "es": "Dirección del viento (grados)"
+          }
+        },
+        {
+          "key": "wind_direction_name",
+          "type": "string",
+          "label": {
+            "en": "Wind direction (N, NNE…)",
+            "fr": "Direction du vent (N, NNE…)",
+            "de": "Windrichtung (N, NNO…)",
+            "es": "Dirección del viento (N, NNE…)"
+          }
+        },
+        {
+          "key": "window",
+          "type": "string",
+          "label": {
+            "en": "Window (open, closed)",
+            "fr": "Fenêtre (open, closed)",
+            "de": "Fenster (open, closed)",
+            "es": "Ventana (open, closed)"
+          }
+        },
+        {
+          "key": "battery_low",
+          "type": "boolean",
+          "label": {
+            "en": "Battery low",
+            "fr": "Pile faible",
+            "de": "Batterie schwach",
+            "es": "Pila baja"
+          }
+        },
+        {
+          "key": "measured_at",
+          "type": "string",
+          "label": {
+            "en": "Time of the measurement (ISO 8601)",
+            "fr": "Heure de la mesure (ISO 8601)",
+            "de": "Zeitpunkt der Messung (ISO 8601)",
+            "es": "Hora de la medición (ISO 8601)"
+          }
+        },
+        {
+          "key": "connection",
+          "type": "string",
+          "label": {
+            "en": "Connection (online, offline)",
+            "fr": "Connexion (online, offline)",
+            "de": "Verbindung (online, offline)",
+            "es": "Conexión (online, offline)"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          }
+        }
+      ]
+    }
+  ]
+}
