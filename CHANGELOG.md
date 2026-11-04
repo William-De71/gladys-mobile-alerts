@@ -5,7 +5,7 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions
 follow [Semantic Versioning](https://semver.org/). This file is generated at
 each release from the Conventional Commits: do not edit it by hand.
 
-## [0.1.0] - unreleased
+## [0.1.0] - 2026-11-04
 
 ### Added
 
@@ -14,3 +14,5 @@ each release from the Conventional Commits: do not edit it by hand.
 - **widgets:** every sensor at a glance with its values, battery and alerts, with a Refresh button; rain and wind with the rain of each of the last 24 hours
 - **configuration:** sensor ids, optional phone id, reading every 1 to 10 minutes, language, "Read now" and "Diagnostic" buttons; unknown ids are found one by one without ever going past the limits of the server
 - **i18n:** English, French, German and Spanish for the manifest, the runtime texts, the documentation and the README
+
+[0.1.0]: https://github.com/William-De71/gladys-mobile-alerts/releases/tag/v0.1.0
